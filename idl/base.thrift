@@ -1,4 +1,4 @@
-namespace go base
+namespace go github.com.weblogs.base
 
 struct BaseResp {
     1: string StatusMessage

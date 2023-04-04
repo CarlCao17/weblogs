@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+  mongo:
+    image: zs1998/mongo-enterprise:6.0
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    restart: always
+    volumes:
+      - /etc/localtime:/etc/localtime # 将主机本地时间夹挂在到容器
+      - ./deploy/mongo/mongo.conf:/etc/mongo/mongo.conf
+#      - /data/mongodb/initdb:/docker-entrypoint-initdb.d # 通过/docker-entrypoint-initdb.d/将更复杂的用户设置显式留给用户 当容器首次启动时它会执行/docker-entrypoint-initdb.d 目录下的sh 和js脚本 。 以脚本字母顺序执行
+#    command: redis-server /etc/redis/redis.conf
+    environment:
+      - TZ=Asia/Shanghai # 设置容器时区与宿主机保持一致
+      - AUTH=yes
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin

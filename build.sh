@@ -1,5 +1,5 @@
 #!/bin/bash
-RUN_NAME=awesome-blogs
+RUN_NAME=weblogs
 mkdir -p output/bin
 cp script/* output 2>/dev/null
 chmod +x output/bootstrap.sh
