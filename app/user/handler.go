@@ -5,7 +5,7 @@ import (
 
 	"github.com/weblogs/app/user/domain/service"
 	"github.com/weblogs/app/user/model/convert"
-	user "github.com/weblogs/kitex_gen/github/com/weblogs/user"
+	"github.com/weblogs/kitex_gen/github/com/weblogs/user"
 	"github.com/weblogs/pkg/errors"
 )
 
@@ -48,8 +48,13 @@ func (s *UserServiceImpl) DeleteUser(ctx context.Context, req *user.DeleteUserRe
 
 // SignIn implements the UserServiceImpl interface.
 func (s *UserServiceImpl) SignIn(ctx context.Context, req *user.SignInRequest) (resp *user.SignInResponse, err error) {
-
-	return
+	resp = user.NewSignInResponse()
+	userID, userRole, err := service.GetUserQueryServiceInstance().Check(ctx, req.UserName, req.Password)
+	if err != nil {
+		return resp, err
+	}
+	resp.UserID = userID
+	return resp, nil
 }
 
 // SignOut implements the UserServiceImpl interface.

@@ -13,7 +13,7 @@ type UserUpdate struct {
 
 func GetUserUpdateServiceInstance() *UserUpdate {
 	if userUpdateService == nil {
-		userUpdateService = NewUserUpdateService()
+		userUpdateService = NewUserUpdateService(repository.GetUserRepoInstance())
 	}
 	return userUpdateService
 }

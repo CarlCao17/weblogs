@@ -13,8 +13,8 @@ var (
 	iter = 1024
 )
 
-// CryptPasswd 用户密码设计：客户端/前端加密用 MD5 加密，后端再用 pbkdf2 加密
-func CryptPasswd(passwd []byte) string {
+// EncryptPasswd 用户密码设计：客户端/前端加密用 MD5 加密，后端再用 pbkdf2 加密
+func EncryptPasswd(passwd []byte) string {
 	dk := pbkdf2.Key(passwd, salt, iter, 32, sha256.New)
 	return hex.EncodeToString(dk)
 }

@@ -5,14 +5,10 @@ import (
 
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/protocol/consts"
+	"github.com/go-session/session/v3"
 
 	"github.com/weblogs/app/facade/model"
 	"github.com/weblogs/pkg/errors"
-	"github.com/weblogs/pkg/session"
-)
-
-const (
-	CookieKey = "X-Access-Token"
 )
 
 func CookieMiddleware() app.HandlerFunc {

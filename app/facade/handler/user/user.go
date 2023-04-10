@@ -27,5 +27,18 @@ func SignIn(ctx context.Context, c *app.RequestContext) {
 }
 
 func SignUp(ctx context.Context, c *app.RequestContext) {
+	var signUpReq model.SignUpRequest
+	if err := c.BindAndValidate(&signUpReq); err != nil {
+		model.SendResponse(c, errors.ParamErr.WithCause(err), nil)
+		return
+	}
+	userID, err := rpc.GetUserInstance().SignUp(ctx, &signUpReq)
+	if err != nil {
+		model.SendResponse(c, errors.UserNotExistErr, nil)
+		return
+	}
+	model.SendResponse(c, nil, map[string]any{
+		"user_id": userID,
+	})
 
 }

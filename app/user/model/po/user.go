@@ -14,16 +14,16 @@ type Model struct {
 }
 
 type User struct {
+	Model
 	ID        primitive.ObjectID `json:"_id" bson:"_id,omitempty"`
 	UserID    int64              `json:"user_id" bson:"user_id"`
-	FirstName string             `json:"first_name" bson:"first_name"`
-	LastName  string             `json:"last_name" bson:"last_name"`
-	Email     string             `json:"email" bson:"email"`
 	UserName  string             `json:"user_name" bson:"user_name"`
 	Password  string             `json:"password" bson:"password"`
 	UserRole  UserRole           `json:"user_role" bson:"user_role"`
+	Email     string             `json:"email" bson:"email"`
+	FirstName string             `json:"first_name" bson:"first_name"`
+	LastName  string             `json:"last_name" bson:"last_name"`
 	IsDel     bool               `json:"is_del" bson:"is_del"`
-	Model
 }
 
 type UserRole int8
